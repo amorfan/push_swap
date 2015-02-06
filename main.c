@@ -6,7 +6,7 @@
 /*   By: amorfan <amorfan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/23 19:59:12 by amorfan           #+#    #+#             */
-/*   Updated: 2015/01/28 17:23:32 by amorfan          ###   ########.fr       */
+/*   Updated: 2015/02/02 21:32:51 by amorfan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,15 @@ int			main(int argc, char **argv)
 	int		i;
 
 	l_a = NULL;
-	i = 1;
-	if (argc == 2 && ft_check_param(argv[i]) == 0)
-		ft_putstr("error : wrong argument\n");
 	if (argc > 2)
 	{
+		if ((i = ft_check_param(argv)) == 0)
+			return (0);
 		while (argv[i])
 		{
-			if (ft_check_param(argv[i]) == 0)
+			if (!(ft_check_digit(argv[i])) || !(ft_check_double(argv, i)))
 			{
-				ft_putstr("error : wrong argument\n");
+				ft_putendl("Error");
 				return (0);
 			}
 			l_a = ft_insert_element_end(l_a, ft_atoi(argv[i]));
@@ -38,7 +37,43 @@ int			main(int argc, char **argv)
 	return (0);
 }
 
-int			ft_check_param(char *argv)
+int 		ft_check_param(char **argv)
+{
+	int 	i;
+
+	i = 1;
+	if (ft_strcmp(argv[1], "-v") == 0)
+	{
+		i++;
+		if (ft_strcmp(argv[2], "-c") == 0)
+			i++;
+	}
+	if (!(argv[i]) && i >= 2)
+		return (0);
+	return (i);
+}
+
+int			ft_check_double(char **argv, int begin)
+{
+	int		i;
+	int		j;
+
+	i = begin;
+	while (argv[i] != '\0')
+	{
+		j = begin;
+		while (argv[j] != '\0')
+		{
+			if (ft_strcmp(argv[i], argv[j]) == 0 && i != j)
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int			ft_check_digit(char *argv)
 {
 	int		i;
 

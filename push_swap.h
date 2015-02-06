@@ -6,7 +6,7 @@
 /*   By: amorfan <amorfan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/23 19:51:12 by amorfan           #+#    #+#             */
-/*   Updated: 2015/01/28 17:28:03 by amorfan          ###   ########.fr       */
+/*   Updated: 2015/02/02 20:58:26 by amorfan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_lst	*ft_swap_b(t_lst *l_b);
 void	ft_push_a(t_lst **l_a, t_lst **l_b, t_flag *flag);
 void 	ft_push_b(t_lst **l_a, t_lst **l_b, t_flag *flag);
 void	ft_print_all(t_lst *l_a, t_lst *l_b);
-int		ft_check_param(char *argv);
+int		ft_check_digit(char *argv);
+int		ft_check_double(char **argv, int begin);
+int		ft_check_param(char **argv);
 
 #endif
